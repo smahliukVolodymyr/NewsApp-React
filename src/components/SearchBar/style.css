@@ -1,0 +1,28 @@
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+@media screen and (max-width: 768px) {
+  .search-container {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .search-container {
+    width: 290px;
+  }
+}
