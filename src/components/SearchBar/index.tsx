@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import "./style.css";
 import { NewsData } from "../../types/types";
 
-interface SearchBarProps {
+type SearchBarProps = {
   news: NewsData[];
   setFilter: (data: NewsData[]) => void;
-}
+};
 
 function SearchBar({ news, setFilter }: SearchBarProps) {
   const [search, setSearch] = useState<string>("");

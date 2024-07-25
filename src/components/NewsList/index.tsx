@@ -2,10 +2,10 @@ import { NewsData } from "../../types/types";
 import NewsItem from "../NewsItem";
 import "./style.css";
 
-interface NewsListProps {
+type NewsListProps = {
   news: NewsData[];
   fetchNews?: () => void;
-}
+};
 
 function NewsList({ news, fetchNews }: NewsListProps) {
   return (

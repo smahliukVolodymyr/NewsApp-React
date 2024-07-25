@@ -4,10 +4,10 @@ import { FaRegBookmark } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import "./style.css";
 
-interface NewsItemProps {
+type NewsItemProps = {
   data: NewsData;
   fetchNews?: () => void;
-}
+};
 
 function NewsItem({ data, fetchNews }: NewsItemProps) {
   const key = process.env.REACT_APP_LOCALE_KEY;
@@ -52,6 +52,9 @@ function NewsItem({ data, fetchNews }: NewsItemProps) {
   };
 
   const handleSave = () => {
+    if (fetchNews) {
+      return;
+    }
     const savedNews = localStorage.getItem(key!);
     let parsedNews: NewsData[] = [];
 
@@ -62,21 +65,19 @@ function NewsItem({ data, fetchNews }: NewsItemProps) {
     }
     const dataToStore = JSON.stringify([...parsedNews, data]);
     localStorage.setItem(key!, dataToStore);
-    if (fetchNews) {
-      fetchNews();
-    }
   };
 
   const handleRemove = () => {
+    if (!fetchNews) {
+      return;
+    }
     const savedNews = localStorage.getItem(key!);
     if (savedNews) {
       const parsedNews: NewsData[] = JSON.parse(savedNews);
       const filteredData = filterElements(parsedNews);
       const dataToStore = JSON.stringify(filteredData);
       localStorage.setItem(key!, dataToStore);
-      if (fetchNews) {
-        fetchNews();
-      }
+      fetchNews();
     }
   };
 
